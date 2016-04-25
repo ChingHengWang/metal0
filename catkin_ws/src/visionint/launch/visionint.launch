@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+ <!--
+ 
+   Created Or Edited on: 06/01/2016
+   Author: Dott. Antonio Mauro Galiano
+ 	   antoniomauro.galiano@gmail.com
+
+   -->
+<launch>
+
+    <!-- run webcam node handler-->
+    <node pkg="usb_cam" type="usb_cam_node" name="usb_cam_node">
+        <remap from="/usb_cam_node/image_raw" to="/camera/image_raw"/>
+	<param name="image_width" value="640" />
+	<param name="image_height" value="480" />
+	<param name="pixel_format" value="yuyv" />
+    </node>
+    
+    <!-- run the vision node-->
+    <node pkg="visionint" type="visionint" name="visionint" output="screen"/>
+
+    <!-- the image viewer, comment this if you just want to display the result on the android app-->    
+
+<!--
+    <node pkg="image_view" type="image_view" name="image_view_result" args="image:=/camera/image_raw/result" />
+-->
+
+</launch>

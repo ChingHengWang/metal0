@@ -1,0 +1,3 @@
+int32 type_reco
+int32 order_id
+string order_argument
