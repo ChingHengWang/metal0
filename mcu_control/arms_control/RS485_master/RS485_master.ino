@@ -22,16 +22,16 @@ unsigned long lastMilli = 0;                    // loop timing
 long dT = 0;
 unsigned long cc = 0;
 
-double rad_tick=(double)12.56/32767; //10rev 2^15
-double degree_tick=(double)720/32767; //
+double rad_tick=(double)62.83/32767; //10rev 2^15
+double degree_tick=(double)3600/32767; //
 
-double theta_target1 = 0.0;
-double theta_target2 = 0.0;
+double theta_target1 = 0*6.28;
+double theta_target2 = 0*6.28;
 double theta_target3 = 0.0;
 double theta_target4 = 0.0;
 double theta_target5 = 0.0;
 double theta_target6 = 0.0;
-double theta_target7 = 0.5*6.28;
+double theta_target7 = 0*6.28;
 double theta_target8 = 0*6.28;
 
 ros::NodeHandle nh;
@@ -149,12 +149,12 @@ void loop()
                     {                                    // enter tmed loop
                         dT = millis()-lastMilli;
                         lastMilli = millis();
-//                        sendCmd(theta_target1, slave1);
+                        sendCmd(theta_target1, slave1);
 //                        
 //                        vel_msg1.x = read_slave(slave1);
 //                        p1.publish(&vel_msg1);
-//                        delay(1);
-//                        sendCmd(theta_target2, slave2);
+                        delay(1);
+                        sendCmd(theta_target2, slave2);
 //                        
 //                        vel_msg2.x = read_slave(slave2);
 //                        p2.publish(&vel_msg2);
@@ -179,7 +179,7 @@ void loop()
 //                        vel_msg6.x = read_slave(slave6);
 //                        p6.publish(&vel_msg6);
 //                        delay(1);
-                        sendCmd(theta_target7, slave7);
+//                        sendCmd(theta_target7, slave7);
                         
 //                        vel_msg7.x = read_slave(slave7);
 //                        p7.publish(&vel_msg7);

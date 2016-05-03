@@ -70,7 +70,7 @@ double degree_tick=(double)360/32767; //resolution
 double increment_angle_0=0.2;//max is 0.3
 double increment_angle_1=0.2;
 
-double angle_Axis_0=0;
+double angle_Axis_0=6.28;
 double angle_Axis_1=0;
 
 

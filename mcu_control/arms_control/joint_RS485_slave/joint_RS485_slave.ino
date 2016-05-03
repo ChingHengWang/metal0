@@ -1,7 +1,11 @@
 /*   
    Author: Zach qoogood1234@gmail.com
-   Created on 14/12/2015
-   20160427 
+
+   20160427 from joint_position_VHN_promini to joint_RS485
+   20160503 ADD TCCR0B = TCCR0B & B11111000 | B00000010; 
+            modify ~/arduino-1.6.5-r5/hardware/arduino/avr/cores/arduino/wiring.c
+            #define MICROSECONDS_PER_TIMER0_OVERFLOW (clockCyclesToMicroseconds(8 * 256))
+   
 
 */
 
@@ -38,8 +42,8 @@
 #define WORKING_RANGE_STATE 3
 #define END_ZONE_STATE 4
 #define MAX_PWM 255
-double rad_tick=(double)12.56/32767; //10rev 2^15
-double degree_tick=(double)720/32767; //
+double rad_tick=(double)62.83/32767; //10rev 2^15
+double degree_tick=(double)3600/32767; //
 
 
 int state=WORKING_RANGE_STATE;
@@ -64,14 +68,14 @@ byte rP = 0;  //receive stop byte
 #define RS485Receive     LOW 
 
 //#define master 0
-//#define slave 1
+#define slave 1
 //#define slave 2
 //#define slave 3
 //#define slave 4
 
 //#define slave 5
 //#define slave 6
-#define slave 7
+//#define slave 7
 //#define slave 8
 
 unsigned long lastMilli = 0;                    // loop timing 
@@ -83,7 +87,7 @@ double pos_offset=0;
 int pos_offset_v=0;
 double max_working_rage=0;
 double cmdPos_Joint=0,anglePos_Joint=0,anglePos_Joint_last=0,angleSpeed_Joint;
-double Kp=20;
+double Kp=10;
 //ENC STATE
 int pinAState = 0;int pinAStateOld = 0;int pinBState = 0;int pinBStateOld = 0;
 
@@ -96,6 +100,7 @@ volatile long unknownvalue = 0;
 
 
 void setup() { 
+ TCCR0B = TCCR0B & B11111000 | B00000010;
 
     pinMode(MotorPin0, OUTPUT);
     pinMode(MotorPin1, OUTPUT);
