@@ -68,10 +68,10 @@ byte rP = 0;  //receive stop byte
 #define RS485Receive     LOW 
 
 //#define master 0
-#define slave 1
+//#define slave 1
 //#define slave 2
 //#define slave 3
-//#define slave 4
+#define slave 4
 
 //#define slave 5
 //#define slave 6

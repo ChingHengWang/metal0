@@ -24,11 +24,11 @@ unsigned long cc = 0;
 
 double rad_tick=(double)62.83/32767; //10rev 2^15
 double degree_tick=(double)3600/32767; //
-
-double theta_target1 = 0*6.28;
-double theta_target2 = 0*6.28;
-double theta_target3 = 0.0;
-double theta_target4 = 0.0;
+double n=0;
+double theta_target1 = n*6.28;
+double theta_target2 = n*6.28;
+double theta_target3 = n*6.28;
+double theta_target4 = n*6.28;
 double theta_target5 = 0.0;
 double theta_target6 = 0.0;
 double theta_target7 = 0*6.28;
@@ -149,22 +149,23 @@ void loop()
                     {                                    // enter tmed loop
                         dT = millis()-lastMilli;
                         lastMilli = millis();
+//                        delay(1);
                         sendCmd(theta_target1, slave1);
 //                        
 //                        vel_msg1.x = read_slave(slave1);
 //                        p1.publish(&vel_msg1);
-                        delay(1);
+//                        delay(1);
                         sendCmd(theta_target2, slave2);
 //                        
 //                        vel_msg2.x = read_slave(slave2);
 //                        p2.publish(&vel_msg2);
 //                        delay(1);
-//                        sendCmd(theta_target3, slave3);
+                        sendCmd(theta_target3, slave3);
 //                        
 //                        vel_msg3.x = read_slave(slave3);
 //                        p3.publish(&vel_msg3);
 //                        delay(1);
-//                        sendCmd(theta_target4, slave4);
+                        sendCmd(theta_target4, slave4);
 //                        
 //                        vel_msg4.x = read_slave(slave4);
 //                        p4.publish(&vel_msg4);
@@ -256,7 +257,7 @@ void sendCmd(double theta_target,int slave)
   Serial1.write(sP); 
   delayMicroseconds(10);
   digitalWrite(8, RS485Receive); //DE,RE=LOW, RX enabled
-  delay(1);
+  //delay(1);
 }
 
 void printMotorInfo()  
