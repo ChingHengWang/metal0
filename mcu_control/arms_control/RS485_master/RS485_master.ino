@@ -24,15 +24,15 @@ unsigned long cc = 0;
 
 double rad_tick=(double)62.83/32767; //10rev 2^15
 double degree_tick=(double)3600/32767; //
-double n=0;
-double theta_target1 = n*6.28;
-double theta_target2 = n*6.28;
-double theta_target3 = n*6.28;
-double theta_target4 = n*6.28;
+
+double theta_target1 = 0.0;
+double theta_target2 = 0.0;
+double theta_target3 = 0.0;
+double theta_target4 = 0.0;
 double theta_target5 = 0.0;
 double theta_target6 = 0.0;
-double theta_target7 = 0*6.28;
-double theta_target8 = 0*6.28;
+double theta_target7 = 0.0;
+double theta_target8 = 0.0;
 
 ros::NodeHandle nh;
 
@@ -120,6 +120,7 @@ ros::Subscriber<geometry_msgs::Vector3> s7("cmd7",messageCb7);
 ros::Subscriber<geometry_msgs::Vector3> s8("cmd8",messageCb8);
 
 void setup() { 
+  nh.getHardware()->setBaud(57600);
   nh.initNode();
   nh.subscribe(s1);
   nh.subscribe(s2);
@@ -192,7 +193,7 @@ void loop()
                         
                         //printMotorInfo();
                     }
-//  nh.spinOnce();
+  nh.spinOnce();
 }
 
 double read_slave(int slave)
